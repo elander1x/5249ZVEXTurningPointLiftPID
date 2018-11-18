@@ -37,7 +37,7 @@ void PIDLift(double dist)
        
         double change = error - oldError;
         
-        //double difference = RightChassis.rotation(vex::rotationUnits::deg) - LeftChassis.rotation(vex::rotationUnits::deg);
+        double difference = RightChassis.rotation(vex::rotationUnits::deg) - LeftChassis.rotation(vex::rotationUnits::deg);
         double motorSpeed = (error*pGain) + ((1.0/errorSum)*(iGain)) + (change*dGain);
         if(motorSpeed <= 30.0){
             motorSpeed = 30.0;
