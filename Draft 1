@@ -80,9 +80,9 @@ void PIDLift(double dist){
         vex::task::sleep(30);
     }
     
-    LeftChassis.stop(vex::brakeType::brake);
-    RightChassis.stop(vex::brakeType::brake);
+    LeftLift.stop(vex::brakeType::brake);
+    RightLift.stop(vex::brakeType::brake);
     
-    RightChassis.resetRotation();
-    LeftChassis.resetRotation();
+    RightLift.resetRotation();
+    LeftLift.resetRotation();
 }
