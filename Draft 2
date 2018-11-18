@@ -1,6 +1,4 @@
 #include "robot-config.h"
-          
-
 /*
  *PID Lift Code (Draft #1)
  *@author Jon Poret (Base by Karthik Selveraj)
@@ -9,7 +7,8 @@
  * This code is a modified version of Karthik's Chassis PID code that is being used for the lift.
 */
 //PID FWD & REV Chassis Movement
-void PIDLift(double dist){
+void PIDLift(double dist)
+{
     RightLift.resetRotation();
     LeftLift.resetRotation();
 
@@ -19,16 +18,16 @@ void PIDLift(double dist){
     double iGain = 0.0;
     double dGain = 0.0;
     
-    double error = RightLift = 0.0;
-    double oldError = RightLift.rotation(vex::rotationUnits::deg);
-    /*
+    double error = RightLift;
+    double oldError = RightLift.rotation(vex::rotationUnits::deg) = 0.0;
+    
     bool isFirst = true;
     int counter = 0;
     
     int i = 0;
     Timer.clear();
     double oldSpeed = 0.0;
-    */
+    
     while(error > 20.0){
         error = goal - RightLift.rotation(vex::rotationUnits::deg);
         errorSum += (error);
@@ -48,7 +47,8 @@ void PIDLift(double dist){
         
         oldError = error;
         
-        if(oldSpeed >= 0.0 && motorSpeed < 0.0 && isFirst == true){
+        if(oldSpeed >= 0.0 && motorSpeed < 0.0 && isFirst == true)
+        {
             isFirst = false;
             oldSpeed = motorSpeed;
             Brain.resetTimer(); 
@@ -65,7 +65,8 @@ void PIDLift(double dist){
             continue;
         }
 
-        if(counter % 2 == 0 && counter > 1){
+        if(counter % 2 == 0 && counter > 1)
+        {
             double currentTime = (Brain.timer(vex::timeUnits::sec));
             int add = (i-1)*10;      
             Brain.Screen.printAt(1,30 + add, true, "%f", currentTime); 
