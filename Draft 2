@@ -12,7 +12,7 @@ void PIDLift(double dist)
     RightLift.resetRotation();
     LeftLift.resetRotation();
 
-    double goal = (90*dist)/(M_PI);
+    double goal = (720*dist)/(0.7*M_PI);
     
     double pGain = 0.0;
     double iGain = 0.0;
