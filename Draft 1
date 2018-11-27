@@ -10,7 +10,7 @@
 */
 //PID FWD & REV Chassis Movement
 void PIDLift(double dist){
-    RightLift.resetRotation();
+    RightLift.resetRotation(); //sets the rotation values of the motors to zero to eliminate errors during the process
     LeftLift.resetRotation();
 
     double goal = (90*dist)/(M_PI);
@@ -19,11 +19,11 @@ void PIDLift(double dist){
     double iGain = 0.0;
     double dGain = 0.0;
     
-    double errorR = goal - RightLift.rotation(vex::rotationUnits::deg);
+    double errorR = goal - RightLift.rotation(vex::rotationUnits::deg); //sets the error to the goal in degrees subtracted by the amount of degrees that the motor has rotated
     double errorL = goal - LeftLift.rotation(vex::rotationUnits::deg);
     double error = errorR;
     double errorSum = 0.0;
-    double oldError = RightChassis.rotation(vex::rotationUnits::deg);
+    double oldError = RightLiftd.rotation(vex::rotationUnits::deg); //sets oldError to what the rotation in degrees the right motor has rotated
     /*
     bool isFirst = true;
     int counter = 0;
@@ -36,7 +36,7 @@ void PIDLift(double dist){
         error = goal - RightChassis.rotation(vex::rotationUnits::deg);
         errorSum += (error);
         if(error == 0.0){
-            errorSum = 0.0;
+            errorSum = 0.0; //if the error is zero it changes the sum to zero to stop the lift.
         }
        
         double change = error - oldError;
@@ -80,7 +80,7 @@ void PIDLift(double dist){
         vex::task::sleep(30);
     }
     
-    LeftLift.stop(vex::brakeType::brake);
+    LeftLift.stop(vex::brakeType::brake); //stops the motors after finding target.
     RightLift.stop(vex::brakeType::brake);
     
     RightLift.resetRotation();
