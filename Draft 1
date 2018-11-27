@@ -33,7 +33,7 @@ void PIDLift(double dist){
     double oldSpeed = 0.0;
     */
     while(error > 20.0){
-        error = goal - RightChassis.rotation(vex::rotationUnits::deg);
+        error = goal - RightChassis.rotation(vex::rotationUnits::deg);  
         errorSum += (error);
         if(error == 0.0){
             errorSum = 0.0; //if the error is zero it changes the sum to zero to stop the lift.
