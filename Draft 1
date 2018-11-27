@@ -13,9 +13,9 @@ void PIDLift(double dist){
     RightLift.resetRotation(); //sets the rotation values of the motors to zero to eliminate errors during the process
     LeftLift.resetRotation();
 
-    double goal = (90*dist)/(M_PI);
+    double goal = (90*dist)/(M_PI); //calculates how far the motors have to rotate for the movement of the lift
     
-    double pGain = 0.0;
+    double pGain = 0.0; //this value is used to determine the critical gain, which is then used for the rest of the values
     double iGain = 0.0;
     double dGain = 0.0;
     
@@ -41,12 +41,12 @@ void PIDLift(double dist){
        
         double change = error - oldError;
         
-        //double difference = RightChassis.rotation(vex::rotationUnits::deg) - LeftChassis.rotation(vex::rotationUnits::deg);
-        double motorSpeed = (error*pGain) + ((1.0/errorSum)*(iGain)) + (change*dGain);
-        if(motorSpeed <= 30.0){
+        //double difference = RightChassis.rotation(vex::rotationUnits::deg) - LeftChassis.rotation(vex::rotationUnits::deg); this line is commented because it is not needed.
+        double motorSpeed = (error*pGain) + ((1.0/errorSum)*(iGain)) + (change*dGain); //finds the motor speed relative to how far away the bot is from its target so that it can reach the target at a specific time.
+        if(motorSpeed <= 30.0){ //sets the minimum speed to 30.
             motorSpeed = 30.0;
         }
-        RightLift.spin(vex::directionType::fwd, motorSpeed, vex::velocityUnits::rpm);
+        RightLift.spin(vex::directionType::fwd, motorSpeed, vex::velocityUnits::rpm); //makes the motors turn
         LeftLift.spin(vex::directionType::fwd, motorSpeed,vex::velocityUnits::rpm);
         
         oldError = error;
