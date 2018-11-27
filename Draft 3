@@ -9,10 +9,10 @@
 //PID FWD & REV Chassis Movement
 void PIDLift(double dist)
 {
-    RightLift.resetRotation();
+    RightLift.resetRotation(); //sets the encoder values for the motors to zero.
     LeftLift.resetRotation();
 
-    double goal = (720*dist)/(0.7*M_PI);
+    double goal = (720*dist)/(0.7*M_PI); //determines the distance the lift has to travel in relation to the amount of rotations needed for the motor to perform
     
     double pGain = 0.0;
     double iGain = 0.0;
@@ -38,7 +38,7 @@ void PIDLift(double dist)
         double change = error - oldError;
         
         double motorSpeed = (error*pGain) + ((1.0/errorSum)*(iGain)) + (change*dGain);
-        RightLift.spin(vex::directionType::fwd, motorSpeed, vex::velocityUnits::rpm);
+        RightLift.spin(vex::directionType::fwd, motorSpeed, vex::velocityUnits::rpm); //makes the motor spin in order to make the lift reach its target
         LeftLift.spin(vex::directionType::fwd, motorSpeed,vex::velocityUnits::rpm);
         
         oldError = error;
@@ -63,7 +63,7 @@ void PIDLift(double dist)
 
         if(counter % 2 == 0 && counter > 1)
         {
-            double currentTime = (Brain.timer(vex::timeUnits::sec));
+            double currentTime = (Brain.timer(vex::timeUnits::sec)); 
             int add = (i-1)*10;      
             Brain.Screen.printAt(1,30 + add, true, "%f", currentTime); 
             Brain.resetTimer();
@@ -74,9 +74,9 @@ void PIDLift(double dist)
         vex::task::sleep(30);
     }
     
-    LeftLift.stop(vex::brakeType::brake);
+    LeftLift.stop(vex::brakeType::brake); //stops the motors
     RightLift.stop(vex::brakeType::brake);
     
-    RightLift.resetRotation();
+    RightLift.resetRotation(); //sets the encoder values to zero
     LeftLift.resetRotation();
 }
