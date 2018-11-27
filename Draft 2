@@ -9,21 +9,29 @@
 //PID FWD & REV Chassis Movement
 void PIDLift(double dist)
 {
+    //Resets the left and right of the lifts motor by setting the encoder to zero
     RightLift.resetRotation();
     LeftLift.resetRotation();
-
+    
+    //Determines the distance  of how far up the lift will go 720(angle)*dist(a set amount how)/ 0.7(the set size/diameter of the gear)*M_PI(circle[used for determinng circumference])
     double goal = (720*dist)/(0.7*M_PI);
     
+    //Gain is the ratio of output change (%) over the measured variable change (%) that caused it
+    //P
+    //I = 1/[(loop period in minutes)*2]
+    //D = (loop period in minutes)/8
     double pGain = 0.0;
     double iGain = 0.0;
     double dGain = 0.0;
     
+    //
     double error = RightLift;
     double oldError = RightLift.rotation(vex::rotationUnits::deg) = 0.0;
     
+    //
     bool isFirst = true;
     int counter = 0;
-    
+    //
     int i = 0;
     Timer.clear();
     double oldSpeed = 0.0;
