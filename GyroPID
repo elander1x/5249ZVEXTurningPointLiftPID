@@ -51,7 +51,7 @@ void GyroTurnRight(double deg){
         }
         
         RightChassis.spin(vex::directionType::rev, motorSpeed, vex::velocityUnits::rpm);
-        LeftChassis.spin(vex::directionType::fwd, motorSpeed + correction,vex::velocityUnits::rpm);
+        LeftChassis.spin(vex::directionType::fwd, motorSpeed + correction,vex::velocityUnits::rpm); //this block of if statements makes the robot rotate back and forth after going 180 degrees to reach its target.
         
         oldError = error;
         
@@ -90,5 +90,5 @@ void GyroTurnRight(double deg){
 
 
 int main() {
-
+//pid code is not being executed here...?
 }
